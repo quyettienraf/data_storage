@@ -42,3 +42,5 @@ describe nation;
 - Learn and test SQL
 
 
+### Trino multi node
+https://github.com/Lewuathe/docker-trino-cluster#images
