@@ -30,7 +30,7 @@ docker exec -it trino trino --catalog tpch --schema sf1
 - Inspect available catalogs, schema, table and more
 ```
 show catalogs;
-show schemas in tpchs;
+show schemas in tpch;
 show tables in tpch.sf1;
 use tpch.sf1;
 select * from nation;
