@@ -1,17 +1,5 @@
 # data_storage
-- [Features](#features)
-- [Prestommmmkmk](#presto)
-- [Images](#images)
-- [Usage](#usage)
-  * [docker-compose.yml](#docker-composeyml)
-- [Terraform](#terraform)
-- [Development](#development)
-  * [Build Image](#build-image)
-  * [Snapshot Image](#snapshot-image)
-- [LICENSE](#license)
 
-# Features
-# Presto 
 ## 1. Presto 
 - paper Presto: https://trino.io/paper.html
 - link Teams: https://trungtv.github.io/articles/2020-03/it4931-luu-tru-va-xu-ly-du-lieu-lon
@@ -133,8 +121,7 @@ $ docker run -it \
     lewuathe/trino-worker:354 http://coordinator:8080 3
 ```
 
-
-## docker-compose.yml
+#### 2.3.4. docker-compose.yml
 
 [`docker-compose`](https://docs.docker.com/compose/compose-file/) enables us to coordinator multiple containers more easily. You can launch a multiple node docker trino cluster with the following yaml file. `command` is required to pass discovery URI and node id information which must be unique in a cluster. If node ID is not passed, the UUID is generated automatically at launch time.
 
