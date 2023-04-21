@@ -1,4 +1,17 @@
 # data_storage
+- [Features](#features)
+- [Prestommmmkmk](#presto)
+- [Images](#images)
+- [Usage](#usage)
+  * [docker-compose.yml](#docker-composeyml)
+- [Terraform](#terraform)
+- [Development](#development)
+  * [Build Image](#build-image)
+  * [Snapshot Image](#snapshot-image)
+- [LICENSE](#license)
+
+# Features
+# Presto 
 ## 1. Presto 
 - paper Presto: https://trino.io/paper.html
 - link Teams: https://trungtv.github.io/articles/2020-03/it4931-luu-tru-va-xu-ly-du-lieu-lon
@@ -106,16 +119,51 @@ $ docker network create trino_network
 $ docker run -p 8080:8080 -it \
     --net trino_network \
     --name coordinator \
-    lewuathe/trino-coordinator:354-arm64v8 http://localhost:8080 1
+    lewuathe/trino-coordinator:354 http://localhost:8080 1
 
 # Launch two workers
 $ docker run -it \
     --net trino_network \
     --name worker1 \
-    lewuathe/trino-worker:354-arm64v8 http://coordinator:8080 2
+    lewuathe/trino-worker:354 http://coordinator:8080 2
 
 $ docker run -it \
     --net trino_network \
     --name worker2 \
-    lewuathe/trino-worker:354-arm64v8 http://coordinator:8080 3
+    lewuathe/trino-worker:354 http://coordinator:8080 3
+```
+
+
+## docker-compose.yml
+
+[`docker-compose`](https://docs.docker.com/compose/compose-file/) enables us to coordinator multiple containers more easily. You can launch a multiple node docker trino cluster with the following yaml file. `command` is required to pass discovery URI and node id information which must be unique in a cluster. If node ID is not passed, the UUID is generated automatically at launch time.
+
+```yaml
+version: '3'
+
+services:
+  coordinator:
+    image: "lewuathe/trino-coordinator:${trino_VERSION}"
+    ports:
+      - "8080:8080"
+    container_name: "coordinator"
+    command: http://coordinator:8080 coordinator
+  worker0:
+    image: "lewuathe/trino-worker:${trino_VERSION}"
+    container_name: "worker0"
+    ports:
+      - "8081:8081"
+    command: http://coordinator:8080 worker0
+  worker1:
+    image: "lewuathe/trino-worker:${trino_VERSION}"
+    container_name: "worker1"
+    ports:
+      - "8082:8081"
+    command: http://coordinator:8080 worker1
+```
+
+The version can be specified as the environment variable.
+
+```
+$ trino_VERSION=354 docker-compose up
 ```
