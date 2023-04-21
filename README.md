@@ -154,3 +154,6 @@ The version can be specified as the environment variable.
 ```
 $ trino_VERSION=354 docker-compose up
 ```
+
+### connector
+- https://trino.io/docs/current/connector/mongodb.html
