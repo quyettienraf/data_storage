@@ -81,18 +81,18 @@ You can launch multi node trino cluster in the local machine as follows.
 $ docker network create trino_network
 
 # Launch coordinator
-$ docker run -p 8080:8080 -it \
+$ docker run -p 8080:8080 -itd \
     --net trino_network \
     --name coordinator \
     lewuathe/trino-coordinator:354-arm64v8 http://localhost:8080 1
 
 # Launch two workers
-$ docker run -it \
+$ docker run -itd \
     --net trino_network \
     --name worker1 \
     lewuathe/trino-worker:354-arm64v8 http://coordinator:8080 2
 
-$ docker run -it \
+$ docker run -itd \
     --net trino_network \
     --name worker2 \
     lewuathe/trino-worker:354-arm64v8 http://coordinator:8080 3
@@ -104,18 +104,18 @@ $ docker run -it \
 $ docker network create trino_network
 
 # Launch coordinator
-$ docker run -p 8080:8080 -it \
+$ docker run -p 8080:8080 -itd \
     --net trino_network \
     --name coordinator \
     lewuathe/trino-coordinator:354 http://localhost:8080 1
 
 # Launch two workers
-$ docker run -it \
+$ docker run -itd \
     --net trino_network \
     --name worker1 \
     lewuathe/trino-worker:354 http://coordinator:8080 2
 
-$ docker run -it \
+$ docker run -itd \
     --net trino_network \
     --name worker2 \
     lewuathe/trino-worker:354 http://coordinator:8080 3
