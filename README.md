@@ -157,3 +157,19 @@ $ trino_VERSION=354 docker-compose up
 
 ### connector
 - https://trino.io/docs/current/connector/mongodb.html
+
+
+#### 3. Run database 
+- MySQL:
+```
+docker pull mysql:latest
+docker run --name mysql_test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 -d mysql:latest
+```
+- MongoDB:
+```
+docker run -itd -p 27017:27017 --name mongo_test mongo:5.0.16-focal
+```
+- Postgres:
+```
+docker run --name postgres_test -p 5432:5432 -e POSTGRES_PASSWORD=1234 -d postgres:latest
+```
