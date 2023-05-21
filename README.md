@@ -173,3 +173,25 @@ docker run -itd -p 27017:27017 --name mongo_test mongo:5.0.16-focal
 ```
 docker run --name postgres_test -p 5432:5432 -e POSTGRES_PASSWORD=1234 -d postgres:latest
 ```
+
+#### 4. Trino CLI 
+https://docs.starburst.io/data-consumer/clients/cli.html
+```
+cd /usr/local/bin
+cp -p /home/<username>/Download/trino-cli-*-executable.jar .
+mv trino-cli-*-executable.jar trino
+chmod +x trino
+```
+You can run the same commands in macOS by replacing the directory in line two with /Users/<username>/Downloads/trino-cli-*-executable.jar.
+
+Next, to verify that the installation works, run the following command, This command outputs a string with the CLI version you downloaded: 
+```
+$ trino --version
+Trino CLI 360
+```
+    
+Launch the CLI with the --server option, specifying the host for your cluster. You can specify a custom port by appending :<port number> to the host.
+```
+trino --server=https://cluster.example.com
+trino --server=http://localhost:8080
+```
