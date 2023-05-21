@@ -195,3 +195,13 @@ Launch the CLI with the --server option, specifying the host for your cluster. Y
 trino --server=https://cluster.example.com
 trino --server=http://localhost:8080
 ```
+    
+#### 5, Add connector Trino
+- add postgres.properties to /usr/local/trino-server-354/etc/catalog
+```
+connector.name=postgresql
+connection-url=jdbc:postgresql://192.168.1.76:5432/postgres
+connection-user=postgres
+connection-password=1234
+```
+- restart Trino 
